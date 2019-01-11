@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+        "module": "esnext", // use ES2015 modules
+        "target": "es6", // compile to ES2015 (Babel will do the rest)
+        "allowSyntheticDefaultImports": true, // see below
+        "baseUrl": "src", // enables you to import relative to this folder
+        "sourceMap": false, // make TypeScript generate sourcemaps
+        "outDir": "build/src", // output directory to build to (irrelevant because we use Webpack most of the time)
+        "jsx": "react", // enable JSX mode, but "preserve" tells TypeScript to not transform it (we'll use Babel)
+        "strict": false,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": true,
+        "moduleResolution": "node"
+    },
+    "exclude": [
+        "node_modules", // don't run on any code in the node_modules directory
+        "build", // don't run on any code in the build directory
+        "dist" // don't run on any code in the dist directory
+    ]
+}

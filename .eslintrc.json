@@ -1,0 +1,60 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "jest": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaFeatures": {
+            "codeFrame": false,
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react",
+        "mocha"
+    ],
+    "rules": {
+        "indent": [
+            "error",
+            2,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "quotes": [
+            "error",
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
+        ],
+        "semi": [
+            "error",
+            "always"
+        ],
+        "no-duplicate-imports": [
+            "error"
+        ],
+        "no-console": "off",
+        "react/prop-types": "off",
+        "react/jsx-no-duplicate-props": "off"
+    },
+    "globals": {
+        "IS_BUILD_PRODUCTION": true,
+        "IS_BUILD_TEST": true,
+        "process": false,
+        "__dirname": false,
+        "Mscratch": false
+    }
+}
