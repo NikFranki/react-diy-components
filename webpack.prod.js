@@ -13,7 +13,7 @@ const htmlminify = {
 };
 
 module.exports = merge(common, {
-    mode: 'development',
+    mode: 'production',
     optimization: {
         minimizer: [new UglifyJsPlugin({
             uglifyOptions: {

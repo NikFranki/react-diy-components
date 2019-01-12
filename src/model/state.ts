@@ -1,4 +1,6 @@
 import { Category } from './category';
+import { IDrawer } from './drawer';
 export interface StoreState {
-    category: Category
+    category: Category,
+    drawer: IDrawer
 };

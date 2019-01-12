@@ -3,9 +3,11 @@ import thunk from 'redux-thunk';
 import { StoreState } from 'model';
 
 import category from "./category/index";
+import drawer from "./drawer/index";
 
 const reducers = combineReducers<StoreState>({
-    category
+    category,
+    drawer
 });
 
 const store = createStore(

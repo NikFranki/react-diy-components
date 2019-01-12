@@ -2,11 +2,10 @@ const path = require('path');
 const webpack = require('webpack');
 
 const getPath = (filePath) => path.resolve(__dirname, filePath);
-const basePath = process.env.NODE_ENV === 'production' ? 'build/dist/' : 'build/dev/';
+const basePath = process.env.NODE_ENV === 'production' ? 'build/prod/' : 'build/dev/';
+const isNpmPublish = process.env.NODE_ENV === 'npm'; // npm 发布打包入一个文件里面
 console.log('current env: ', process.env.NODE_ENV);
 
-// const isNpmPublish = false; // npm 发布打包入一个文件里面
-const isNpmPublish = true; // npm 发布打包入一个文件里面
 const entry = isNpmPublish ? './src/index.ts' : {
     'lib': [
         'react',
@@ -44,11 +43,15 @@ const optimization = {
 };
 
 const config = {
-    mode: 'development',
     // Plugins
     plugins: [
         new webpack.DefinePlugin({
             'process.browser': true
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+              NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')
+            }
         })
     ],
     optimization,
@@ -88,7 +91,7 @@ const config = {
             },
             {
                 test: /\.less$/,
-                use: ['style-loader', 'postcss-loader', 'less-loader']
+                use: [{loader: 'style-loader'}, {loader: 'postcss-loader'}, {loader: 'less-loader', options: { javascriptEnabled: true }}]
             },
             {
                 test: /\.css$/,
@@ -115,7 +118,9 @@ const config = {
     node: {
         fs: 'empty',
         module: 'empty'
-    }
+    },
+    performance: { hints: false }
 };
 
 module.exports = config;
+

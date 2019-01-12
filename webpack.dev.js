@@ -5,7 +5,7 @@ const common = require('./webpack.common');
 
 module.exports = merge(common, {
     mode: 'development',
-    devtool: 'inline-source-map',
+    devtool: 'inline-cheap-module-source-map',
     devServer: {
         stats: {
             maxModules: 0,
@@ -21,6 +21,6 @@ module.exports = merge(common, {
             template: './src/index.html',
             filename: 'index.html',
             inject: true
-        }),
+        })
     ],
 });
