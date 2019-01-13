@@ -1,4 +1,10 @@
 import * as React from "react";
-const Index: React.StatelessComponent<{}> = () => <h2>Index</h2>;
+import { hoc } from 'hoc';
+// import './index.less';
+const Index: React.StatelessComponent<{}> = () => (
+    <div className="index">
+        <h2>Index</h2>
+    </div>
+);
 
-export default Index;
+export default hoc({ tutorialTitle: 'Tutorials'})(Index);

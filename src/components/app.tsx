@@ -2,24 +2,26 @@ import * as React from 'react';
 import CategoryAction from 'reducers/category/action';
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from 'redux';
-import { MemberEntity, Category, IActionNoParam, StoreState, IRequestNoParam } from 'model';
-import { RouteComponentProps } from 'react-router-dom';
-import { memberAPI } from '../api/member';
+import { MemberEntity, Sery, Category, IActionNoParam, StoreState, IRequestNoParam, InjectHocProps } from 'model';
+import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
+import { memberAPI } from 'api/member';
 import { MemberHeader } from './members/memberHeader';
 import { MemberRow } from './members/memberRow';
-import { Drawer } from 'antd';
+import { hoc } from 'hoc';
 
-interface IAppContainerProps extends RouteComponentProps<any> {
-    name: string;
-    category: Category;
-    add: IActionNoParam<Dispatch>;
-    fetchMembersAction: IRequestNoParam<Dispatch>;
+
+// import './app.less';
+interface IAppContainerProps extends RouteComponentProps<any>, InjectHocProps {
+    name: string,
+    category: Category,
+    add: IActionNoParam<Dispatch>,
+    fetchMembersAction: IRequestNoParam<Dispatch>,
+    fetchSeriesAction: IRequestNoParam<Dispatch>,
 }
 
 interface IIAppContainerState {
-    age: number;
-    members: MemberEntity[];
-    visible: boolean;
+    age: number,
+    members: MemberEntity[],
 }
 
 class AppContainer extends React.Component<IAppContainerProps, IIAppContainerState> {
@@ -31,7 +33,6 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
     state = {
         age: 24,
         members: [],
-        visible: true
     }
 
     constructor(props: IAppContainerProps) {
@@ -45,55 +46,54 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
         //     .then((members) => {
         //         this.setState({ members });
         //     });
+        // memberAPI.fetchSeries()
+        //     .then((res) => {
+        //         console.log(res);
+        //     });
         memberAPI.fetchMembersAsync()
             .then((members) => {
                 this.setState({ members });
             });
         this.props.fetchMembersAction();
+        this.props.fetchSeriesAction();
     }
 
     change = (e: any) => {
         this.props.add();
-        this.setState({visible: true});
-    }
-
-    onClose = () => {
-        this.setState({
-          visible: false,
-        });
     }
 
     public render() {
         console.log(this.props.category);
-        return <div>
-            <Drawer
-                title="Basic Drawer"
-                placement={`left`}
-                closable={false}
-                onClose={this.onClose}
-                visible={this.state.visible}
-                >
-                <p onClick={this.change}>hello {this.props.name}!</p>
-
-                <div className="row">
-                    <h2> Members Page</h2>
-                    <table className="table">
-                        <thead>
-                            <MemberHeader />
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.members.map((member: any) =>
-                                    <MemberRow
-                                        key={member.id}
-                                        member={member}
-                                    />
-                                )
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </Drawer>
+        return <div className="appContainer">
+            <p onClick={this.change}>hello {this.props.name}!</p>
+            <nav>
+                <ul>
+                    {
+                        this.props.category.series.map((sery: Sery, index: any) => (
+                            <li key={index}><Link to={`${sery.tutorialName}`}>{sery.tutorialName}</Link></li>
+                        ))
+                    }
+                </ul>
+            </nav>
+            
+            <div className="row">
+                <h2> Members Page</h2>
+                <table className="table">
+                    <thead>
+                        <MemberHeader />
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.members.map((member: any) =>
+                                <MemberRow
+                                    key={member.id}
+                                    member={member}
+                                />
+                            )
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     }
 }
@@ -105,6 +105,7 @@ const mapStateToProps = ({ category }: StoreState) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => ({
     add: bindActionCreators(CategoryAction.add, dispatch),
     fetchMembersAction: bindActionCreators(CategoryAction.fetchMembersAction, dispatch),
+    fetchSeriesAction: bindActionCreators(CategoryAction.fetchSeriesAction, dispatch)
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);
+export default hoc({tutorialTitle: 'Tutorials'})(withRouter(connect(mapStateToProps, mapDispatchToProps)(AppContainer)));

@@ -1,5 +1,11 @@
 import * as React from "react";
+import { hoc } from 'hoc';
 import './About.less';
-const About: React.StatelessComponent<{}> = () => <h2 className="about">About</h2>;
+// import './index.less';
+const About: React.StatelessComponent<{}> = () => (
+    <div className="about">
+        <h2>About</h2>
+    </div>
+);
 
-export default About;
+export default hoc({ tutorialTitle: 'Tutorials'})(About);

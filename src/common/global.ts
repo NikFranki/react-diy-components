@@ -1,3 +1,4 @@
 interface Window {
-    Store: any
+    Store: any,
+    TutorialApi: any
 }

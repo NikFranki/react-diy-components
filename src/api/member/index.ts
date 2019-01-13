@@ -1,5 +1,5 @@
-import { MemberEntity } from 'model';
-import { members } from './mockData';
+import { MemberEntity, Sery } from 'model';
+import { members, series } from './mockData';
 
 const baseURL = 'https://api.github.com/orgs/lemoncode';
 
@@ -7,9 +7,13 @@ const fetchMembers = (): Promise<MemberEntity[]> => {
   return Promise.resolve(members);
 };
 
+const fetchSeries = (): Promise<Sery[]> => {
+    return Promise.resolve(series);
+}
+
 const fetchMembersAsync = (): Promise<MemberEntity[]> => {
     const membersURL = `${baseURL}/members`;
-    
+
     return fetch(membersURL)
       .then((response) => (response.json()))
       .then(mapToMembers);
@@ -18,7 +22,7 @@ const fetchMembersAsync = (): Promise<MemberEntity[]> => {
 const mapToMembers = (githubMembers: any[]): MemberEntity[] => {
     return githubMembers.map(mapToMember);
 };
-    
+
 const mapToMember = (githubMember: any): MemberEntity => {
     return {
         id: githubMember.id,
@@ -28,6 +32,7 @@ const mapToMember = (githubMember: any): MemberEntity => {
 };
 
 export const memberAPI = {
-  fetchMembers,
-  fetchMembersAsync
+    fetchMembers,
+    fetchSeries,
+    fetchMembersAsync
 };

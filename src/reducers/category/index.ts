@@ -4,7 +4,8 @@ import { Category, IReducerAction } from 'model';
 const defaultState: Category = {
     category: '',
     num: 0,
-    members: []
+    members: [],
+    series: []
 };
 
 let num = 0;

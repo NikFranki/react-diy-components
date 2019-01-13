@@ -110,7 +110,8 @@ const config = {
             router: path.resolve(__dirname, 'src/router/'),
             store: path.resolve(__dirname, 'src/store/'),
             util: path.resolve(__dirname, 'src/util/'),
-            model: path.resolve(__dirname, 'src/model/')
+            model: path.resolve(__dirname, 'src/model/'),
+            hoc: path.resolve(__dirname, 'src/components/hoc')
         },
         extensions: ['.wasm', '.mjs', '.ts', '.tsx', '.jsx', '.js', '.json']
     },

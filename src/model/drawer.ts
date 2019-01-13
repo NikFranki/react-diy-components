@@ -1,3 +1,3 @@
 export interface IDrawer {
-    isShowDrawer: boolean;
+    isShowDrawer: boolean,
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { MemberEntity } from 'model';
 
 interface Props {
-  member: MemberEntity;
+  member: MemberEntity,
 }
 
 export const MemberRow: React.StatelessComponent<Props> = ({member}) => {
