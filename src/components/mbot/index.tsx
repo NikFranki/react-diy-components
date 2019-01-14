@@ -1,5 +1,5 @@
 import * as React from "react";
-import { hoc } from 'hoc';
+import { hoc } from 'components/hoc';
 import store from 'reducers/store';
 // import './index.less';
 const Mbot: React.StatelessComponent<{}> = () => (

@@ -2,13 +2,15 @@ import React from "react";
 import { Provider } from "react-redux";
 import store from 'reducers/store';
 import AppRouter from 'router';
-import 'antd/dist/antd.less';
+import 'lib/styles/index.less';
 
 const TutorialApp = () => {
     return (
-        <Provider store={store}>
-            <AppRouter />
-        </Provider>
+        <div className="tutorial-app">
+            <Provider store={store}>
+                <AppRouter />
+            </Provider>
+        </div>
     );
 };
 

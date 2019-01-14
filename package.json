@@ -1,6 +1,6 @@
 {
   "name": "react-diy-components",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "An UI React-based implementation",
   "license": "MIT",
   "keywords": [
@@ -20,7 +20,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-dev": "rm -rf build && webpack --config webpack.dev.js --env.NODE_ENV=local --env.production --progress",
     "build-prod": "rm -rf build && cross-env NODE_ENV=production webpack --config webpack.prod.js --progress",
-    "build-npm": "rm -rf dist && cross-env NODE_ENV=npm webpack --config webpack.npm.js --progress"
+    "build-npm": "rm -rf dist && cross-env NODE_ENV=npm webpack --config webpack.npm.js --progress",
+    "cp": "cp -r dist/ examples/mblock-web/node_modules/react-diy-components/dist"
   },
   "dependencies": {
     "@types/events": "^1.2.0",
@@ -51,6 +52,7 @@
     "autoprefixer": "^9.4.4",
     "babel-loader": "^8.0.4",
     "babel-plugin-import": "^1.11.0",
+    "copy-webpack-plugin": "^4.6.0",
     "cross-env": "^5.2.0",
     "css-loader": "^2.1.0",
     "file-loader": "^3.0.1",

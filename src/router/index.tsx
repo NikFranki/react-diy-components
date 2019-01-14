@@ -5,8 +5,7 @@ import AppContainer from 'components/app';
 import Codey from 'components/codey';
 import Arduino from 'components/arduino';
 import Mbot from 'components/mbot';
-import Lesson from 'components/codey/Lesson';
-import Step from 'components/codey/lesson/step';
+import Lesson from 'components/codey/lesson';
 import History from 'util/history';
 import TutorialApi from 'api';
 
@@ -20,7 +19,6 @@ const AppRouter: React.StatelessComponent<{}> = () => (
                 <Route path="/arduino" component={Arduino} />
                 <Route path="/mbot" component={Mbot} />
                 <Route path={`/lesson3`} component={Lesson} />
-                <Route path={`/step1`} component={Step} />
             </Switch>
         </div>
     </Router>

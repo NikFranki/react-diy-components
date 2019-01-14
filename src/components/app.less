@@ -1,9 +1,98 @@
-.appContainer {
-    position: absolute;
-    top: 55px;
-    width: 256px;
-    height: 100%;
-    background: #fff;
-    z-index: 99999;
-    color: red;
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
+.ant-drawer.ant-drawer-open.ant-drawer-open.drawer-show {
+    transition: none !important;
+}
+
+.appContainer, .codey {
+    .series-wrapper, ul {
+        padding: 0;
+        margin: 10px 10px;
+        li {
+            height: 40px;
+            line-height: 40px;
+            background: #eee;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            padding: 0 10px;
+            cursor: pointer;
+            a {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+}
+
+.drawer-open {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99999;
+    display: none;
+    &.active {
+        display: block;
+    }
+    .mask {
+        position: fixed;
+        opacity: .3;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(0,0,0,0.65);
+    }
+    .drawer-wrapper {
+        position: fixed;
+        width: 256px;
+        height: 100%;
+        box-shadow: 2px 0 8px rgba(0,0,0,0.15);
+        background: #fff;
+        header {
+            height: 40px;
+            line-height: 40px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            font-size: 16px;
+            background: #eee;
+            div {
+                cursor: pointer;
+                .title {
+                    font-weight: 700;
+                    font-size: 18px;
+                }
+            }
+        }
+        .lesson {
+            .lesson-nav {
+                display: flex;
+                flex-direction: row;
+                height: 40px;
+                align-items: center;
+                justify-content: space-around;
+                padding: 0 15px;
+                li {
+                    height: 25px;
+                    width: 25px;
+                    border-radius: 100%;
+                    border: 1px solid #ddd;
+                    font-size: 14px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: #000;
+                    cursor: pointer;
+                }
+            }
+            main {
+                padding: 0 15px;
+            }
+        }
+    }
+}
+

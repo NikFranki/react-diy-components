@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from 'redux';
 import { MemberEntity, Sery, Category, IActionNoParam, StoreState, IRequestNoParam, InjectHocProps } from 'model';
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
-import { memberAPI } from 'api/member';
-import { MemberHeader } from './members/memberHeader';
-import { MemberRow } from './members/memberRow';
-import { hoc } from 'hoc';
+import { Icon } from 'antd';
+// import { memberAPI } from 'api/member';
+// import { MemberHeader } from './members/memberHeader';
+// import { MemberRow } from './members/memberRow';
+import { hoc } from 'components/hoc';
 
 
-// import './app.less';
+import './app.less';
 interface IAppContainerProps extends RouteComponentProps<any>, InjectHocProps {
     name: string,
     category: Category,
@@ -50,10 +51,10 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
         //     .then((res) => {
         //         console.log(res);
         //     });
-        memberAPI.fetchMembersAsync()
-            .then((members) => {
-                this.setState({ members });
-            });
+        // memberAPI.fetchMembersAsync()
+        //     .then((members) => {
+        //         this.setState({ members });
+        //     });
         this.props.fetchMembersAction();
         this.props.fetchSeriesAction();
     }
@@ -65,18 +66,22 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
     public render() {
         console.log(this.props.category);
         return <div className="appContainer">
-            <p onClick={this.change}>hello {this.props.name}!</p>
             <nav>
-                <ul>
+                <ul className="series-wrapper">
                     {
                         this.props.category.series.map((sery: Sery, index: any) => (
-                            <li key={index}><Link to={`${sery.tutorialName}`}>{sery.tutorialName}</Link></li>
+                            <li key={index}>
+                                <Link to={`${sery.tutorialName}`}>
+                                    <span>{sery.tutorialName}</span>
+                                    <Icon type="right" />
+                                </Link>
+                            </li>
                         ))
                     }
                 </ul>
             </nav>
             
-            <div className="row">
+            {/* <div className="row">
                 <h2> Members Page</h2>
                 <table className="table">
                     <thead>
@@ -93,7 +98,7 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
                         }
                     </tbody>
                 </table>
-            </div>
+            </div> */}
         </div>
     }
 }

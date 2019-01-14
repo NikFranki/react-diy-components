@@ -16,7 +16,7 @@ const store = createStore(
 );
 
 if (process.env.NODE_ENV !== 'production') {
-    window.Store = store.getState();
+    window.Store = store;
 }
 
 export default store;

@@ -1,9 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const getPath = (filePath) => path.resolve(__dirname, filePath);
-const basePath = process.env.NODE_ENV === 'production' ? 'build/prod/' : 'build/dev/';
 const isNpmPublish = process.env.NODE_ENV === 'npm'; // npm 发布打包入一个文件里面
+const basePath = process.env.NODE_ENV === 'production' ? 'build/prod/' : isNpmPublish ? 'dist/' : 'build/dev/';
 console.log('current env: ', process.env.NODE_ENV);
 
 const entry = isNpmPublish ? './src/index.ts' : {
@@ -21,7 +22,8 @@ const entry = isNpmPublish ? './src/index.ts' : {
 };
 const output = isNpmPublish ? {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: getPath(basePath),
+    // publicPath: 'dist/'
     libraryTarget: 'commonjs2'
 } : {
     path: getPath(basePath),
@@ -111,7 +113,6 @@ const config = {
             store: path.resolve(__dirname, 'src/store/'),
             util: path.resolve(__dirname, 'src/util/'),
             model: path.resolve(__dirname, 'src/model/'),
-            hoc: path.resolve(__dirname, 'src/components/hoc')
         },
         extensions: ['.wasm', '.mjs', '.ts', '.tsx', '.jsx', '.js', '.json']
     },

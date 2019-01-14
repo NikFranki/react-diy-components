@@ -11,6 +11,11 @@ const startTutorial = () => {
     EventEmitter.emit('showDrawer', true);
 }
 
+// const injectIntoTotutorialAppProps = () => {
+//     console.log('inject props to TutorialApp');
+//     store.dispatch(CategoryAction.add());
+// }
+
 export default {
     test,
     startTutorial
