@@ -1,12 +1,12 @@
-import { Sery } from './series';
-import { MemberEntity } from './memberEntity';
+import { Sery, MemberEntity, ISery } from 'model';
 
-export interface Category {
+export interface Tutorial {
     category: string,
     members: MemberEntity[],
     series: Sery[],
     cursery: string,
     curlesson: string,
     curstep: string,
-    curtitle: string
+    curtitle: string,
+    serylist: ISery[]
 }

@@ -34,3 +34,8 @@ export interface IAction<D> {
 export interface IActionNoParam<D> {
     (): IReducerAction
 }
+
+export interface ILoginData {
+    account: string,
+    password: string
+}

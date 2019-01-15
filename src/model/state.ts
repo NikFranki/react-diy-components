@@ -1,6 +1,6 @@
-import { Category } from './category';
+import { Tutorial } from './category';
 import { IDrawer } from './drawer';
 export interface StoreState {
-    category: Category,
+    category: Tutorial,
     drawer: IDrawer,
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import store from 'reducers/store';
 import AppRouter from 'router';
-import 'lib/styles/index.less';
+import 'antd/dist/antd.less';
 
 const TutorialApp = () => {
     return (

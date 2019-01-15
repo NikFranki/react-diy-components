@@ -1,9 +1,21 @@
 const ACTIONS = {
     CATEGORY_SELECT: 'CATEGORY_SELECT',
-    ADD: 'ADD',
-    SAVE: 'SAVE'
+    SAVE: 'SAVE',
+    SERY_LIST: 'sery_list'
+};
+
+const USER_ACCESS_TOKEN_KEY = 'utoken';
+
+// 语言 { string }
+const INTL_LANG_KEY = 'ulang';
+
+const MOULE = {
+    LEMONCODE: 'lemoncode'
 };
 
 export default {
-    ACTIONS
+    USER_ACCESS_TOKEN_KEY,
+    INTL_LANG_KEY,
+    ACTIONS,
+    MOULE
 };

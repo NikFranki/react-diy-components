@@ -1,22 +1,22 @@
 import * as React from "react";
 import { hoc } from 'components/hoc';
 import { Link } from 'react-router-dom';
-import { Icon } from 'antd';
+// import { Icon } from 'antd';
 // import './index.less';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import { Category, StoreState, IAction } from "model";
+import { Tutorial, StoreState, IAction } from "model";
 import _ from "lodash";
-import CategoryAction from 'reducers/category/action';
+import TutorialAction from 'reducers/tutorial/action';
 
-interface ICodeyProps {
-    category: Category,
+interface ISeryProps {
+    category: Tutorial,
     save: IAction<{}>
 }
-const Codey: React.StatelessComponent<ICodeyProps> = (props: ICodeyProps) => (
-    <div className="codey">
+const Sery: React.StatelessComponent<ISeryProps> = (props: ISeryProps) => (
+    <div className="series">
         <ul>
-            {
+            {/* {
                 !_.isEmpty(props.category.cursery) &&
                 props.category.series.filter(item => item.tutorialName === props.category.cursery)[0]
                     .lessons.map((value, index) => <li key={index}>
@@ -25,7 +25,15 @@ const Codey: React.StatelessComponent<ICodeyProps> = (props: ICodeyProps) => (
                         <Icon type="right" />
                     </Link>
                 </li>)
-            }
+            } */}
+            <li>
+                <Link onClick={() => props.save({ curlesson: '123', curtitle: '123' })} to={`123`}>123</Link>
+                <div className="sign"></div>
+            </li>
+            <li>
+                <Link onClick={() => props.save({ curlesson: '456', curtitle: '456' })} to={`456`}>456</Link>
+                <div className="sign"></div>
+            </li>
         </ul>
     </div>
 );
@@ -35,7 +43,7 @@ const mapStateToProps = ({ category }: StoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch ) => ({
-    save: bindActionCreators(CategoryAction.save, dispatch)
+    save: bindActionCreators(TutorialAction.save, dispatch)
 });
 
-export default hoc({ tutorialTitle: 'codey' })(connect(mapStateToProps, mapDispatchToProps)(Codey));
+export default hoc({ tutorialTitle: 'Sery' })(connect(mapStateToProps, mapDispatchToProps)(Sery));

@@ -113,6 +113,7 @@ const config = {
             store: path.resolve(__dirname, 'src/store/'),
             util: path.resolve(__dirname, 'src/util/'),
             model: path.resolve(__dirname, 'src/model/'),
+            services: path.resolve(__dirname, 'src/services/'),
         },
         extensions: ['.wasm', '.mjs', '.ts', '.tsx', '.jsx', '.js', '.json']
     },

@@ -7,23 +7,42 @@ ul {
     transition: none !important;
 }
 
-.appContainer, .codey {
+.appContainer, .series {
     .series-wrapper, ul {
-        padding: 0;
-        margin: 10px 10px;
         li {
-            height: 40px;
-            line-height: 40px;
-            background: #eee;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            padding: 0 10px;
+            position: relative;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 10px 0 30px;
             cursor: pointer;
+            cursor: pointer;
+            &:hover {
+                background: #46B5FF;
+            }
             a {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                color: #fff;
+                span {
+                    font-family: PingFang-SC-Medium;
+                    font-size: 16px;
+                    color: #FFFFFF;
+                    letter-spacing: 0;
+                }
+                i {
+                    color: #fff;
+                }
+            }
+            .sign {
+                position: absolute;
+                bottom: 0;
+                display: inline-block;
+                width: 20px;
+                height: 1px;
+                background: #fff;
+                opacity: .2;
             }
         }
     }
@@ -31,7 +50,7 @@ ul {
 
 .drawer-open {
     position: fixed;
-    top: 0;
+    top: 50px;
     width: 100%;
     height: 100%;
     z-index: 99999;
@@ -41,30 +60,54 @@ ul {
     }
     .mask {
         position: fixed;
-        opacity: .3;
+        // opacity: .3;
         height: 100%;
         width: 100%;
-        background-color: rgba(0,0,0,0.65);
+        // background-color: rgba(0,0,0,0.65);
     }
     .drawer-wrapper {
         position: fixed;
         width: 256px;
         height: 100%;
         box-shadow: 2px 0 8px rgba(0,0,0,0.15);
-        background: #fff;
+        background: #375F93;
         header {
-            height: 40px;
-            line-height: 40px;
+            position: relative;
+            height: 50px;
+            line-height: 50px;
             display: flex;
             justify-content: space-between;
-            padding: 0 15px;
+            align-items: center;
+            padding: 0 10px 0 30px;
+            font-family: PingFang-SC-Medium;
             font-size: 16px;
-            background: #eee;
+            color: #FFFFFF;
+            letter-spacing: 0;
             div {
                 cursor: pointer;
                 .title {
-                    font-weight: 700;
-                    font-size: 18px;
+                    font-size: 16px;
+                }
+                i {
+                    font-size: 14px;
+                }
+            }
+            .sign {
+                position: absolute;
+                bottom: 0;
+                display: inline-block;
+                width: 20px;
+                height: 1px;
+                background: #fff;
+                opacity: .2;
+            }
+            &.hasBackBtn {
+                padding-left: 10px;
+                background: #315582;
+                div {
+                    .title {
+                        margin-left: 5px;
+                    }
                 }
             }
         }

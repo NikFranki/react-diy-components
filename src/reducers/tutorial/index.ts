@@ -1,14 +1,15 @@
 import CONSTANT from 'constant';
-import { Category, IReducerAction } from 'model';
+import { Tutorial, IReducerAction } from 'model';
 
-const defaultState: Category = {
+const defaultState: Tutorial = {
     category: '',
     members: [],
     series: [],
     cursery: '',
     curlesson: '',
     curstep: '',
-    curtitle: 'Tutorials'
+    curtitle: 'Get start',
+    serylist: []
 };
 
 const reducer = (state = defaultState, action: IReducerAction) => {
@@ -16,6 +17,8 @@ const reducer = (state = defaultState, action: IReducerAction) => {
         case CONSTANT.ACTIONS.CATEGORY_SELECT:
             return {...state, ...action.payload};
         case CONSTANT.ACTIONS.SAVE:
+            return {...state, ...action.payload};
+        case 'sery_list':
             return {...state, ...action.payload};
         default:
             return state;

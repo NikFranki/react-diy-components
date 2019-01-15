@@ -48,6 +48,7 @@ export const hoc = (props?: InjectHocProps) => {
             }
 
             public render() {
+                const isNeedBackBtn = History.location.pathname !== '/';
                 return (
                     <div>
                         {/* <Drawer
@@ -72,17 +73,19 @@ export const hoc = (props?: InjectHocProps) => {
                         <div className={`drawer-open ${this.state.visible ? 'active' : ''}`}>
                             <div className="mask"></div>
                             <div className="drawer-wrapper">
-                                <header>
+                                <header className={`${isNeedBackBtn ? 'hasBackBtn' : ''}`}>
                                     <div onClick={this.back}>
                                         <label>
-                                            {History.location.pathname !== '/' && <Icon type="left" />}
+                                            {isNeedBackBtn && <Icon type="left" />}
                                         </label>
                                         <span className="title">
-                                            {store.getState().category.curtitle}
+                                            {isNeedBackBtn ? store.getState().category.curtitle : 'Get start'}
                                         </span>
                                     </div>
-                                    {' '}
-                                    <div  onClick={this.onClose}>close</div>
+                                    <div onClick={this.onClose}>
+                                        {!isNeedBackBtn && <Icon type="right" />}
+                                    </div>
+                                    <div style={{display: isNeedBackBtn ? 'none' : 'inlineBlock'}} className="sign"></div>
                                 </header>
                                 <WrapperComponent {...props} />
                             </div>

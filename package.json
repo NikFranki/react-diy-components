@@ -1,6 +1,6 @@
 {
   "name": "react-diy-components",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "An UI React-based implementation",
   "license": "MIT",
   "keywords": [
@@ -30,6 +30,7 @@
     "@types/react-dom": "^16.0.11",
     "@types/react-redux": "^6.0.12",
     "@types/react-router-dom": "^4.3.1",
+    "abortcontroller-polyfill": "^1.2.1",
     "antd": "^3.12.1",
     "events": "^3.0.0",
     "lodash": "^4.17.11",
@@ -50,6 +51,7 @@
     "@babel/preset-react": "^7.0.0",
     "@types/node": "^10.12.18",
     "autoprefixer": "^9.4.4",
+    "axios": "^0.18.0",
     "babel-loader": "^8.0.4",
     "babel-plugin-import": "^1.11.0",
     "copy-webpack-plugin": "^4.6.0",

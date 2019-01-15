@@ -1,21 +1,20 @@
 import * as React from 'react';
-import CategoryAction from 'reducers/category/action';
+import TutorialAction from 'reducers/tutorial/action';
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from 'redux';
-import { MemberEntity, Sery, Category, StoreState, IRequestNoParam, IAction, InjectHocProps } from 'model';
+import { MemberEntity, ISery, Tutorial, StoreState, IRequestNoParam, IAction, InjectHocProps } from 'model';
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 import { Icon } from 'antd';
 // import { memberAPI } from 'api/member';
-// import { MemberHeader } from './members/memberHeader';
-// import { MemberRow } from './members/memberRow';
 import { hoc } from 'components/hoc';
 
 
 import './app.less';
 interface IAppContainerProps extends RouteComponentProps<any>, InjectHocProps {
     name: string,
-    category: Category,
+    category: Tutorial,
     save: IAction<{}>,
+    sery_list: IRequestNoParam<Dispatch>,
     fetchMembersAction: IRequestNoParam<Dispatch>,
     fetchSeriesAction: IRequestNoParam<Dispatch>,
 }
@@ -42,58 +41,34 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
     }
 
     public componentDidMount() {
-        // memberAPI.fetchMembers()
-        //     .then((members) => {
-        //         this.setState({ members });
-        //     });
-        // memberAPI.fetchSeries()
-        //     .then((res) => {
-        //         console.log(res);
-        //     });
         // memberAPI.fetchMembersAsync()
         //     .then((members) => {
         //         this.setState({ members });
         //     });
-        this.props.fetchMembersAction();
+        // this.props.fetchMembersAction();
         this.props.fetchSeriesAction();
+        this.props.sery_list();
     }
 
     public render() {
-        console.log(this.props.category);
+        console.log(this.props.category.serylist);
+        const { serylist } = this.props.category;
         return <div className="appContainer">
             <nav>
                 <ul className="series-wrapper">
                     {
-                        this.props.category.series.map((sery: Sery, index: any) => (
+                        serylist.map((sery: ISery, index: number) => (
                             <li key={index}>
-                                <Link onClick={() => this.props.save({ cursery: sery.tutorialName, curtitle: sery.tutorialName })} to={`${sery.tutorialName}`}>
-                                    <span>{sery.tutorialName}</span>
+                                <Link onClick={() => this.props.save({ cursery: sery.categoryName, curtitle: sery.categoryName })} to={`${sery.categoryName}`}>
+                                    <span>{sery.categoryName}</span>
                                     <Icon type="right" />
                                 </Link>
+                                <div className="sign"></div>
                             </li>
                         ))
                     }
                 </ul>
             </nav>
-            
-            {/* <div className="row">
-                <h2> Members Page</h2>
-                <table className="table">
-                    <thead>
-                        <MemberHeader />
-                    </thead>
-                    <tbody>
-                        {
-                            this.state.members.map((member: any) =>
-                                <MemberRow
-                                    key={member.id}
-                                    member={member}
-                                />
-                            )
-                        }
-                    </tbody>
-                </table>
-            </div> */}
         </div>
     }
 }
@@ -103,9 +78,10 @@ const mapStateToProps = ({ category }: StoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    save: bindActionCreators(CategoryAction.save, dispatch),
-    fetchMembersAction: bindActionCreators(CategoryAction.fetchMembersAction, dispatch),
-    fetchSeriesAction: bindActionCreators(CategoryAction.fetchSeriesAction, dispatch)
+    save: bindActionCreators(TutorialAction.save, dispatch),
+    sery_list: bindActionCreators(TutorialAction.sery_list, dispatch),
+    fetchMembersAction: bindActionCreators(TutorialAction.fetchMembersAction, dispatch),
+    fetchSeriesAction: bindActionCreators(TutorialAction.fetchSeriesAction, dispatch)
 })
 
 export default hoc({tutorialTitle: 'Tutorials'})(withRouter(connect(mapStateToProps, mapDispatchToProps)(AppContainer)));

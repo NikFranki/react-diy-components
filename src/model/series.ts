@@ -23,3 +23,8 @@ export interface Sery {
     tutorialName: string,
     lessons: Lesson[],
 }
+
+export interface ISery {
+    categoryName: string,
+    id: number,
+}

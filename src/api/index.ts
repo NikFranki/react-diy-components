@@ -10,7 +10,7 @@ const startTutorial = () => {
 
 // const injectIntoTotutorialAppProps = () => {
 //     console.log('inject props to TutorialApp');
-//     store.dispatch(CategoryAction.add());
+//     store.dispatch(TutorialAction.add());
 // }
 
 export default {
