@@ -4,7 +4,8 @@ import { Icon } from 'antd';
 import History, { goBack } from 'util/history';
 
 import EventEmitter from 'util/events';
-import '../app.less'
+import '../app.less';
+import store from 'reducers/store';
 
 export interface IState {
     visible: boolean;
@@ -47,7 +48,6 @@ export const hoc = (props?: InjectHocProps) => {
             }
 
             public render() {
-                console.log(props);
                 return (
                     <div>
                         {/* <Drawer
@@ -78,7 +78,7 @@ export const hoc = (props?: InjectHocProps) => {
                                             {History.location.pathname !== '/' && <Icon type="left" />}
                                         </label>
                                         <span className="title">
-                                            {props && props.tutorialTitle}
+                                            {store.getState().category.curtitle}
                                         </span>
                                     </div>
                                     {' '}

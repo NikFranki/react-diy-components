@@ -1,13 +1,7 @@
 import { Dispatch } from 'redux';
 import CONSTANT from 'constant';
 import { memberAPI } from 'api/member';
-import { MemberEntity, Sery } from 'model';
-
-const add = () => {
-    return {
-        type: CONSTANT.ACTIONS.ADD
-    }
-}
+import { MemberEntity, Sery, Category } from 'model';
 
 export const fetchMembersAction = () => (dispatch: Dispatch) => {
   memberAPI.fetchMembers()
@@ -22,13 +16,13 @@ export const fetchSeriesAction = () => (dispatch: Dispatch) => {
     })
 }
 
-const save = (res: {[key: string]: MemberEntity[] | Sery[]} ) => ({
+const save = (res: {[key: string]: MemberEntity[] | Sery[] | Category} ) => ({
     type: CONSTANT.ACTIONS.SAVE,
     payload: res,
 });
 
 export default {
-    add,
+    save,
     fetchMembersAction,
     fetchSeriesAction
 };

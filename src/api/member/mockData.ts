@@ -29,7 +29,7 @@ export const series: Sery[] =
                                 title: 'blabla',
                                 media: {
                                     type: 'image',
-                                    url: 'tutorialTitle'
+                                    url: 'http://mblock-expanded.oss-cn-shenzhen.aliyuncs.com/933fd76379c74b918ec6ec04606fc81d.png'
                                 },
                                 explain: 'lala'
                             }
@@ -39,12 +39,12 @@ export const series: Sery[] =
                         stepName: 'step2',
                         content: [
                             {
-                                title: 'blabla',
+                                title: 'excelent',
                                 media: {
                                     type: 'image',
-                                    url: 'tutorialTitle'
+                                    url: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
                                 },
-                                explain: 'lala'
+                                explain: 'wow'
                             }
                         ]
                     }
@@ -60,7 +60,7 @@ export const series: Sery[] =
                                 title: 'blabla',
                                 media: {
                                     type: 'image',
-                                    url: 'tutorialTitle'
+                                    url: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
                                 },
                                 explain: 'lala'
                             }

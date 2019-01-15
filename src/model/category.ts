@@ -3,7 +3,10 @@ import { MemberEntity } from './memberEntity';
 
 export interface Category {
     category: string,
-    num: number,
     members: MemberEntity[],
-    series: Sery[]
+    series: Sery[],
+    cursery: string,
+    curlesson: string,
+    curstep: string,
+    curtitle: string
 }

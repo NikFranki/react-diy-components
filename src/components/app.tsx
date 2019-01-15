@@ -2,7 +2,7 @@ import * as React from 'react';
 import CategoryAction from 'reducers/category/action';
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from 'redux';
-import { MemberEntity, Sery, Category, IActionNoParam, StoreState, IRequestNoParam, InjectHocProps } from 'model';
+import { MemberEntity, Sery, Category, StoreState, IRequestNoParam, IAction, InjectHocProps } from 'model';
 import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 import { Icon } from 'antd';
 // import { memberAPI } from 'api/member';
@@ -15,13 +15,12 @@ import './app.less';
 interface IAppContainerProps extends RouteComponentProps<any>, InjectHocProps {
     name: string,
     category: Category,
-    add: IActionNoParam<Dispatch>,
+    save: IAction<{}>,
     fetchMembersAction: IRequestNoParam<Dispatch>,
     fetchSeriesAction: IRequestNoParam<Dispatch>,
 }
 
 interface IIAppContainerState {
-    age: number,
     members: MemberEntity[],
 }
 
@@ -59,10 +58,6 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
         this.props.fetchSeriesAction();
     }
 
-    change = (e: any) => {
-        this.props.add();
-    }
-
     public render() {
         console.log(this.props.category);
         return <div className="appContainer">
@@ -71,7 +66,7 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
                     {
                         this.props.category.series.map((sery: Sery, index: any) => (
                             <li key={index}>
-                                <Link to={`${sery.tutorialName}`}>
+                                <Link onClick={() => this.props.save({ cursery: sery.tutorialName, curtitle: sery.tutorialName })} to={`${sery.tutorialName}`}>
                                     <span>{sery.tutorialName}</span>
                                     <Icon type="right" />
                                 </Link>
@@ -108,7 +103,7 @@ const mapStateToProps = ({ category }: StoreState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-    add: bindActionCreators(CategoryAction.add, dispatch),
+    save: bindActionCreators(CategoryAction.save, dispatch),
     fetchMembersAction: bindActionCreators(CategoryAction.fetchMembersAction, dispatch),
     fetchSeriesAction: bindActionCreators(CategoryAction.fetchSeriesAction, dispatch)
 })

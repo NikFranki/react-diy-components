@@ -1,35 +1,41 @@
 import * as React from "react";
 import { hoc } from 'components/hoc';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Icon } from 'antd';
 // import './index.less';
-import store from 'reducers/store';
-const Codey: React.StatelessComponent<{}> = () => (
+import { Dispatch, bindActionCreators } from 'redux';
+import { connect } from "react-redux";
+import { Category, StoreState, IAction } from "model";
+import _ from "lodash";
+import CategoryAction from 'reducers/category/action';
+
+interface ICodeyProps {
+    category: Category,
+    save: IAction<{}>
+}
+const Codey: React.StatelessComponent<ICodeyProps> = (props: ICodeyProps) => (
     <div className="codey">
         <ul>
             {
-                store.getState().category.series.length > 0 &&
-                store.getState().category.series.filter(item => item.tutorialName === 'codey')[0]
+                !_.isEmpty(props.category.cursery) &&
+                props.category.series.filter(item => item.tutorialName === props.category.cursery)[0]
                     .lessons.map((value, index) => <li key={index}>
-                    <Link to={`/codey/${value.lessonName}`}>
+                        <Link onClick={() => props.save({ curlesson: value.lessonName, curtitle: value.lessonName })} to={`${value.lessonName}`}>
                         <span>{value.lessonName}</span>
                         <Icon type="right" />
                     </Link>
                 </li>)
             }
-            <li>
-                <Link to={`/lesson3`}>
-                    <span>lesson3</span>
-                    <Icon type="right" />
-                </Link>
-            </li>
-            {
-                store.getState().category.series.length > 0 &&
-                store.getState().category.series.filter(item => item.tutorialName === 'codey')[0]
-                    .lessons.map((value, index) => <Route key={index} path={`/codey/${value.lessonName}`} render={() => <div>{value.lessonName}</div>} />)
-            }
         </ul>
     </div>
 );
 
-export default hoc({ tutorialTitle: 'codey' })(Codey);
+const mapStateToProps = ({ category }: StoreState) => ({
+    category
+});
+
+const mapDispatchToProps = (dispatch: Dispatch ) => ({
+    save: bindActionCreators(CategoryAction.save, dispatch)
+});
+
+export default hoc({ tutorialTitle: 'codey' })(connect(mapStateToProps, mapDispatchToProps)(Codey));

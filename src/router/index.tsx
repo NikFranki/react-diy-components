@@ -18,7 +18,8 @@ const AppRouter: React.StatelessComponent<{}> = () => (
                 <Route path="/codey" component={Codey} />
                 <Route path="/arduino" component={Arduino} />
                 <Route path="/mbot" component={Mbot} />
-                <Route path={`/lesson3`} component={Lesson} />
+                <Route path={`/lesson1`} component={Lesson} />
+                <Route path={`/lesson2`} component={Lesson} />
             </Switch>
         </div>
     </Router>
