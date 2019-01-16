@@ -34,9 +34,35 @@ const sery_list = () => {
     };
 };
 
+const lesson_list = (data: {categoryId: number}, success?: Function, fail?: Function) => {
+    return async (dispatch: Dispatch) => {
+        try {
+            const result = await TurtorialApi['lesson_list'](data);
+            console.log('leson_list: ', result);
+            dispatch(save({lessonlist: result.coverList}));
+        } catch (error) {
+            console.warn(error);
+        }
+    };
+}
+
+const content_list= (data: {coverId: number}, success?: Function, fail?: Function) => {
+    return async (dispatch: Dispatch) => {
+        try {
+            const result = await TurtorialApi['content_list'](data);
+            console.log('content_list: ', result);
+            dispatch(save({contentlist: result.contentList}));
+        } catch (error) {
+            console.warn(error);
+        }
+    };
+};
+
 export default {
     save,
     fetchMembersAction,
     fetchSeriesAction,
-    sery_list
+    sery_list,
+    lesson_list,
+    content_list
 };

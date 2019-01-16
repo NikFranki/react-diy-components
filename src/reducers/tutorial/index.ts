@@ -8,8 +8,12 @@ const defaultState: Tutorial = {
     cursery: '',
     curlesson: '',
     curstep: '',
+    curseryId: 0,
+    curlessonId: 0,
     curtitle: 'Get start',
-    serylist: []
+    serylist: [],
+    lessonlist: [],
+    contentlist: [],
 };
 
 const reducer = (state = defaultState, action: IReducerAction) => {
@@ -17,8 +21,6 @@ const reducer = (state = defaultState, action: IReducerAction) => {
         case CONSTANT.ACTIONS.CATEGORY_SELECT:
             return {...state, ...action.payload};
         case CONSTANT.ACTIONS.SAVE:
-            return {...state, ...action.payload};
-        case 'sery_list':
             return {...state, ...action.payload};
         default:
             return state;

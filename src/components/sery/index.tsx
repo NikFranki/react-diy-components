@@ -7,9 +7,10 @@ import { RouteComponentProps, withRouter, Link } from 'react-router-dom';
 import { Icon } from 'antd';
 // import { memberAPI } from 'api/member';
 import { hoc } from 'components/hoc';
+import History from 'util/history';
 
 
-import './app.less';
+import '../app.less';
 interface IAppContainerProps extends RouteComponentProps<any>, InjectHocProps {
     name: string,
     category: Tutorial,
@@ -58,8 +59,12 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
                 <ul className="series-wrapper">
                     {
                         serylist.map((sery: ISery, index: number) => (
-                            <li key={index}>
-                                <Link onClick={() => this.props.save({ cursery: sery.categoryName, curtitle: sery.categoryName })} to={`${sery.categoryName}`}>
+                            <li className={index === 0 && History.location.pathname !== '/' ? 'isPointUp' : ''} key={index}>
+                                <Link onClick={() => this.props.save({ 
+                                    cursery: sery.categoryName,
+                                    curtitle: sery.categoryName,
+                                    curseryId: sery.id,
+                                })} to={`lesson`}>
                                     <span>{sery.categoryName}</span>
                                     <Icon type="right" />
                                 </Link>
@@ -69,6 +74,7 @@ class AppContainer extends React.Component<IAppContainerProps, IIAppContainerSta
                     }
                 </ul>
             </nav>
+            
         </div>
     }
 }

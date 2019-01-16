@@ -1,4 +1,4 @@
-import { Sery, MemberEntity, ISery } from 'model';
+import { Sery, MemberEntity, ISery, ILesson, IContentListData } from 'model';
 
 export interface Tutorial {
     category: string,
@@ -7,6 +7,10 @@ export interface Tutorial {
     cursery: string,
     curlesson: string,
     curstep: string,
+    curseryId: number,
+    curlessonId: number,
     curtitle: string,
-    serylist: ISery[]
+    serylist: ISery[],
+    lessonlist: ILesson[],
+    contentlist: IContentListData[],
 }

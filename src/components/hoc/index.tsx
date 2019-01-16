@@ -3,7 +3,7 @@ import { InjectHocProps } from 'model';
 import { Icon } from 'antd';
 import History, { goBack } from 'util/history';
 
-import EventEmitter from 'util/events';
+// import EventEmitter from 'util/events';
 import '../app.less';
 import store from 'reducers/store';
 
@@ -20,18 +20,18 @@ export const hoc = (props?: InjectHocProps) => {
                 visible: true,
             }
 
-            setDrawer = (visible: boolean) => {
+            setDrawer = () => {
                 this.setState({
-                    visible,
+                    visible: !this.state.visible,
                 });
             }
 
             componentDidMount() {
-                EventEmitter.on('showDrawer', this.setDrawer);
+                // EventEmitter.on('showDrawer', this.setDrawer);
             }
 
             componentWillUnmount() {
-                EventEmitter.removeListener('showDrawer', this.setDrawer);
+                // EventEmitter.removeListener('showDrawer', this.setDrawer);
             }
 
             onClose = () => {
@@ -48,7 +48,15 @@ export const hoc = (props?: InjectHocProps) => {
             }
 
             public render() {
+                const { cursery, curlesson } = store.getState().category;
                 const isNeedBackBtn = History.location.pathname !== '/';
+
+                const actions = new Map([
+                    ['/', 'Get start'],
+                    ['/lesson', cursery],
+                    ['/content', curlesson]
+                ]);
+                const title = actions.get(History.location.pathname);
                 return (
                     <div>
                         {/* <Drawer
@@ -73,20 +81,18 @@ export const hoc = (props?: InjectHocProps) => {
                         <div className={`drawer-open ${this.state.visible ? 'active' : ''}`}>
                             <div className="mask"></div>
                             <div className="drawer-wrapper">
-                                <header className={`${isNeedBackBtn ? 'hasBackBtn' : ''}`}>
-                                    <div onClick={this.back}>
-                                        <label>
-                                            {isNeedBackBtn && <Icon type="left" />}
-                                        </label>
-                                        <span className="title">
-                                            {isNeedBackBtn ? store.getState().category.curtitle : 'Get start'}
-                                        </span>
-                                    </div>
-                                    <div onClick={this.onClose}>
-                                        {!isNeedBackBtn && <Icon type="right" />}
-                                    </div>
-                                    <div style={{display: isNeedBackBtn ? 'none' : 'inlineBlock'}} className="sign"></div>
-                                </header>
+                                {isNeedBackBtn &&
+                                    <header className='hasBackBtn'>
+                                        <div onClick={this.back}>
+                                            <label>
+                                                <Icon type="left" />
+                                            </label>
+                                            <span className="title">
+                                                {title}
+                                            </span>
+                                        </div>
+                                    </header>
+                                }
                                 <WrapperComponent {...props} />
                             </div>
                         </div>

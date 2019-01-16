@@ -35,7 +35,10 @@ export interface IActionNoParam<D> {
     (): IReducerAction
 }
 
-export interface ILoginData {
-    account: string,
-    password: string
+export interface ILessonData {
+    categoryId: number,
+}
+
+export interface IContentData {
+    coverId: number,
 }

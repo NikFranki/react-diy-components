@@ -1,8 +1,18 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
 }
+
+a {
+    text-decoration: none;
+}
+
 .ant-drawer.ant-drawer-open.ant-drawer-open.drawer-show {
     transition: none !important;
 }
@@ -16,6 +26,16 @@ ul {
             padding: 0 10px 0 30px;
             cursor: pointer;
             cursor: pointer;
+            &.isPointUp:first-child:before {
+                content: '';
+                width: 0;
+                height: 0;
+                border: 10px solid transparent;
+                border-bottom-color: #375F93;
+                top: -20px;
+                left: 50px;
+                position: absolute;
+            }
             &:hover {
                 background: #46B5FF;
             }
@@ -52,7 +72,7 @@ ul {
     position: fixed;
     top: 50px;
     width: 100%;
-    height: 100%;
+    height: calc(100% - 50px);
     z-index: 99999;
     display: none;
     &.active {
@@ -67,8 +87,8 @@ ul {
     }
     .drawer-wrapper {
         position: fixed;
-        width: 256px;
-        height: 100%;
+        width: 300px;
+        height: calc(100% - 50px);
         box-shadow: 2px 0 8px rgba(0,0,0,0.15);
         background: #375F93;
         header {
@@ -83,6 +103,8 @@ ul {
             font-size: 16px;
             color: #FFFFFF;
             letter-spacing: 0;
+            background: #315582;
+            background: #375F93;
             div {
                 cursor: pointer;
                 .title {
@@ -91,15 +113,6 @@ ul {
                 i {
                     font-size: 14px;
                 }
-            }
-            .sign {
-                position: absolute;
-                bottom: 0;
-                display: inline-block;
-                width: 20px;
-                height: 1px;
-                background: #fff;
-                opacity: .2;
             }
             &.hasBackBtn {
                 padding-left: 10px;
@@ -111,32 +124,70 @@ ul {
                 }
             }
         }
-        .lesson {
-            .lesson-nav {
-                display: flex;
-                flex-direction: row;
-                height: 40px;
-                align-items: center;
-                justify-content: space-around;
-                padding: 0 15px;
-                li {
-                    height: 25px;
-                    width: 25px;
-                    border-radius: 100%;
-                    border: 1px solid #ddd;
-                    font-size: 14px;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    color: #000;
-                    cursor: pointer;
-                    &.active {
-                        background: #69a5d8;
+        .content {
+            position: relative;
+            height: 100%;
+            header {
+                justify-content: flex-start;
+                padding: 0 30px;
+                .process {
+                    &:before {
+                        content: '';
+                        width: 0;
+                        height: 0;
+                        border: 10px solid transparent;
+                        border-bottom-color: #375F93;
+                        top: -20px;
+                        left: 50px;
+                        position: absolute;
                     }
+                    font-size: 22px;
+                    margin-right: 8px;
                 }
             }
             main {
-                padding: 0 15px;
+                &.content-wrapper {
+                    padding: 10px 30px 30px;
+                    img {
+                        width: 100%;
+                        height: 180px;
+                        border-radius: 5px;
+                    }
+                    p {
+                        padding: 10px 0 30px 0;
+                        margin: 0;
+                        font-size: 12px;
+                        color: #FFFFFF;
+                        letter-spacing: 0;
+                        font-family: PingFang-SC-Medium;
+                    }
+                }
+            }
+            footer {
+                display: flex;
+                justify-content: space-between;
+                position: absolute;
+                bottom: 80px;
+                width: 100%;
+                padding: 0 25px;
+                &.start {
+                    justify-content: center;
+                }
+                button {
+                    width: 120px;
+                    height: 30px;
+                    border: 1px solid #FFFFFF;
+                    border-radius: 100px;
+                    font-size: 14px;
+                    color: #FFFFFF;
+                    letter-spacing: 0;
+                    line-height: 26px;
+                    background: #375F93;
+                    &.next {
+                        background: #46B5FF;
+                        border: none;
+                    }
+                }
             }
         }
     }

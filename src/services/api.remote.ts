@@ -37,6 +37,16 @@ class Tutorial extends Api {
                 domain: Domains.category,
                 url: `p/category/list`,
                 method: 'post'
+            },
+            lesson_list: {
+                domain: Domains.category,
+                url: `p/cover/list`,
+                method: 'post'
+            },
+            content_list: {
+                domain: Domains.category,
+                url: `p/content/list`,
+                method: 'post'
             }
         }, false);
     }
