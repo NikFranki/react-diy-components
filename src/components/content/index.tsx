@@ -1,11 +1,11 @@
 import * as React from "react";
 import { hoc } from 'components/hoc';
 // import { Tutorial, StoreState, Step, StepContent, IAction, Sery, Lesson } from "model";
-import { Tutorial, StoreState, Step, IAction, IContentData, IRequest } from "model";
+import { Tutorial, StoreState, Step, IAction, IContentData, IRequest, IContent } from "model";
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import TutorialAction from 'reducers/tutorial/action';
-import { Button } from 'antd';
+import { Button, Modal } from 'antd';
 
 interface IContentsProps  {
     category: Tutorial,
@@ -15,12 +15,16 @@ interface IContentsProps  {
 
 interface IContentsState {
     curindex: number,
+    visible: boolean,
+    curselectItem: IContent
 }
 
 class Contents extends React.Component<IContentsProps, IContentsState> {
 
     state = {
-        curindex: 0
+        curindex: 0,
+        visible: false,
+        curselectItem: {content: '', type: ''}
     };
 
     constructor(props: IContentsProps) {
@@ -57,8 +61,21 @@ class Contents extends React.Component<IContentsProps, IContentsState> {
         });
     }
 
+    showModal = (item: IContent) => {
+        this.setState({
+          visible: true,
+          curselectItem: item
+        });
+      }
+    
+      hideModal = () => {
+        this.setState({
+          visible: false,
+        });
+      }
+
     render() {
-        const { curindex } = this.state;
+        const { curindex, curselectItem } = this.state;
         const { contentlist } = this.props.category;
         console.log(contentlist);
         const isStart = curindex === 0;
@@ -84,7 +101,7 @@ class Contents extends React.Component<IContentsProps, IContentsState> {
                                                :
                                                item.type ==='image'
                                                ?
-                                               <img src={item.content} alt="" />
+                                               <img src={item.content} alt="" onClick={this.showModal.bind(this, item)} />
                                                :
                                                <p>{item.content}</p>
                                             }
@@ -97,6 +114,22 @@ class Contents extends React.Component<IContentsProps, IContentsState> {
                         {!isStart && <Button className="prev" type="primary" htmlType= "submit" onClick={this.handlePrevBtn}>上一步</Button>}
                         <Button className="next" type="primary" htmlType= "submit" onClick={this.handleNextBtn}>{isFinished ? '完成' : '下一步'}</Button>
                     </footer>
+                    <Modal
+                        className="lala"
+                        align="center"
+                        title="Modal"
+                        visible={this.state.visible}
+                        onOk={this.hideModal}
+                        onCancel={this.hideModal}
+                        >
+                        {
+                            curselectItem.type === 'image' ? 
+                                <img src={curselectItem.content} alt="" />
+                            :
+                            <video>sfd</video>
+                        }
+                        
+                    </Modal>
             </div>
         )
     }
