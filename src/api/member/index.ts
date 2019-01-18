@@ -1,38 +1,21 @@
-import { MemberEntity, Sery } from 'model';
-import { members, series } from './mockData';
+import { ISery, ILesson, IContentListData } from 'model';
+import { serylist, lessonlist, contentlist } from './mockData';
 
-const baseURL = 'https://api.github.com/orgs/lemoncode';
-
-const fetchMembers = (): Promise<MemberEntity[]> => {
-  return Promise.resolve(members);
-};
-
-const fetchSeries = (): Promise<Sery[]> => {
-    return Promise.resolve(series);
+const fetchSerylist = (): Promise<ISery[]> => {
+    return Promise.resolve(serylist);
 }
 
-const fetchMembersAsync = (): Promise<MemberEntity[]> => {
-    const membersURL = `${baseURL}/members`;
-
-    return fetch(membersURL)
-      .then((response) => (response.json()))
-      .then(mapToMembers);
+const fetchLessonlist = (): Promise<ILesson[]> => {
+    return Promise.resolve(lessonlist);
 };
 
-const mapToMembers = (githubMembers: any[]): MemberEntity[] => {
-    return githubMembers.map(mapToMember);
+const fetchContentlist = (): Promise<IContentListData[]> => {
+    return Promise.resolve(contentlist);
 };
 
-const mapToMember = (githubMember: any): MemberEntity => {
-    return {
-        id: githubMember.id,
-        login: githubMember.login,
-        avatar_url: githubMember.avatar_url,
-    };
-};
 
 export const memberAPI = {
-    fetchMembers,
-    fetchSeries,
-    fetchMembersAsync
+    fetchSerylist,
+    fetchLessonlist,
+    fetchContentlist
 };

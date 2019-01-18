@@ -1,0 +1,12 @@
+{
+    "MSG.99999": "Network error. Please check your network.",
+    "tutorial-prev-step-btn": "Previous",
+    "tutorial-next-step-btn": "Next",
+    "tutorial-finish-btn": "Finish",
+    "tutorial-finish-ond-lesson-row1": "Congratulations! You completed this lesson！",
+    "tutorial-finish-ond-lesson-row2": "Now prepare yourself for new challenges in the next lesson!",
+    "tutorial-start-next-lesson": "Next lesson",
+    "tutorial-finish-last-lesson-row1": "Congratulations! You already completed all the lessons！",
+    "tutorial-finish-last-lesson-row2": "But there are more fun courses waiting to be explored~",
+    "tutorial-browse-more-lesson": "Explore more courses"
+}

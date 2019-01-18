@@ -9,7 +9,7 @@ import {
 
 class Api {
 
-    constructor(type: string, domain: string = Domains.members, cfg?: IActionsConfig, defaultAction: boolean = true) {
+    constructor(type: string, domain: string = Domains.category, cfg?: IActionsConfig, defaultAction: boolean = true) {
         const config: IActionsConfig = {
             list: {
                 domain,
@@ -28,11 +28,6 @@ class Api {
 class Tutorial extends Api {
     constructor(type: string) {
         super(type, Domains.category, {
-            login: {
-                domain: Domains.passport,
-                url: `v1/user/login`,
-                method: 'post'
-            },
             sery_list: {
                 domain: Domains.category,
                 url: `p/category/list`,

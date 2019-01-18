@@ -25,9 +25,10 @@ const set = (key: string, value: any) => {
 const get = (key: string) => {
     if (window.localStorage) {
         const data = localStorage.getItem(key);
-        if (data && data !== "undefined") {
+        if (typeof data === 'string' && data.includes('{')) {
             return JSON.parse(data);
         }
+        return data;
     }
     return '';
 }

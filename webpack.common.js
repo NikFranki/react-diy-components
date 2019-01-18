@@ -23,7 +23,6 @@ const entry = isNpmPublish ? './src/index.ts' : {
 const output = isNpmPublish ? {
     filename: 'bundle.js',
     path: getPath(basePath),
-    // publicPath: 'dist/'
     libraryTarget: 'commonjs2'
 } : {
     path: getPath(basePath),
@@ -114,6 +113,7 @@ const config = {
             util: path.resolve(__dirname, 'src/util/'),
             model: path.resolve(__dirname, 'src/model/'),
             services: path.resolve(__dirname, 'src/services/'),
+            resource: path.resolve(__dirname, 'src/resource/'),
         },
         extensions: ['.wasm', '.mjs', '.ts', '.tsx', '.jsx', '.js', '.json']
     },

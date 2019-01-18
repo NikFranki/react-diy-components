@@ -4,11 +4,13 @@ import { hoc } from 'components/hoc';
 import { Link } from 'react-router-dom';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from "react-redux";
-import { Tutorial, StoreState, IAction, ILessonData, IRequest, ILesson } from "model";
+import { Tutorial, StoreState, IAction, ILessonData, IRequest, ILangs } from "model";
 import TutorialAction from 'reducers/tutorial/action';
+import { message } from 'antd';
 
 interface ILessonProps {
     category: Tutorial,
+    langs: ILangs,
     save: IAction<{}>,
     lesson_list: IRequest<ILessonData, Dispatch> 
 }
@@ -19,9 +21,13 @@ class Lesson extends React.Component<ILessonProps, any> {
     }
 
     componentDidMount() {
-    const { curseryId } = this.props.category;
-        this.props.lesson_list({categoryId: curseryId}, (res: ILesson) => {
-            console.log(res);
+        const { langs, lesson_list, category } = this.props;
+        const { curseryId } = category;
+        lesson_list({categoryId: curseryId}, () => {}, (err: any) => {
+            if (err.code === 99999) {
+                message.error(langs["MSG.99999"]);
+                return;
+            }
         });
     }
 
@@ -34,7 +40,6 @@ class Lesson extends React.Component<ILessonProps, any> {
                         <li key={index}>
                             <Link onClick={() => this.props.save({ 
                                 curlesson: item.coverName,
-                                curtitle: item.coverName,
                                 curlessonId: item.id
                             })} to={`content`}>{item.coverName}</Link>
                             <div className="sign"></div>

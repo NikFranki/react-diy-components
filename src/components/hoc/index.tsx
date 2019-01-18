@@ -2,10 +2,12 @@ import * as React from 'react';
 import { InjectHocProps } from 'model';
 import { Icon } from 'antd';
 import History, { goBack } from 'util/history';
-
-// import EventEmitter from 'util/events';
-import '../app.less';
+import Storage from "util/localstorage";
+import EventEmitter from 'util/events';
 import store from 'reducers/store';
+import Zh from "resource/language/i18n/zh.json";
+import En from "resource/language/i18n/en.json";
+import '../app.less';
 
 export interface IState {
     visible: boolean;
@@ -15,6 +17,7 @@ export interface IState {
 export const hoc = (props?: InjectHocProps) => {
     return (WrapperComponent: React.ComponentType<any>) => {
         return class Hoc extends React.Component<any, IState> {
+            private lang: string = '';
 
             state = {
                 visible: true,
@@ -26,12 +29,16 @@ export const hoc = (props?: InjectHocProps) => {
                 });
             }
 
+            componentWillMount() {
+                this.lang = Storage.get('lang') || 'en';
+            }
+
             componentDidMount() {
-                // EventEmitter.on('showDrawer', this.setDrawer);
+                EventEmitter.on('showDrawer', this.setDrawer);
             }
 
             componentWillUnmount() {
-                // EventEmitter.removeListener('showDrawer', this.setDrawer);
+                EventEmitter.removeListener('showDrawer', this.setDrawer);
             }
 
             onClose = () => {
@@ -50,6 +57,7 @@ export const hoc = (props?: InjectHocProps) => {
             public render() {
                 const { cursery, curlesson } = store.getState().category;
                 const isNeedBackBtn = History.location.pathname !== '/';
+                const languages  = {zh: Zh, en: En};
 
                 const actions = new Map([
                     ['/', 'Get start'],
@@ -93,7 +101,7 @@ export const hoc = (props?: InjectHocProps) => {
                                         </div>
                                     </header>
                                 }
-                                <WrapperComponent {...props} />
+                                <WrapperComponent langs={languages[this.lang]} {...props} />
                             </div>
                         </div>
                     </div>
