@@ -1,6 +1,6 @@
 interface Window {
     Store: any,
-    TutorialApi: any
+    TutorialApis: any
 }
 
 declare module "*.json" {

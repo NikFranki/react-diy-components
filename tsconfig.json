@@ -18,6 +18,9 @@
         "moduleResolution": "node",
     },
     "exclude": [
-        "node_modules" // don't run on any code in the node_modules directory
+        "node_modules", // don't run on any code in the node_modules directory
+        "build",
+        "dist",
+        "examples"
     ]
 }

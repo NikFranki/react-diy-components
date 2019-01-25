@@ -9,4 +9,5 @@ export interface Tutorial {
     serylist: ISery[],
     lessonlist: ILesson[],
     contentlist: IContentListData[],
+    isShowDrawer: boolean
 }

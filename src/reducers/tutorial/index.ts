@@ -10,11 +10,15 @@ const defaultState: Tutorial = {
     serylist: [],
     lessonlist: [],
     contentlist: [],
+    isShowDrawer: true
 };
 
 const reducer = (state = defaultState, action: IReducerAction) => {
     switch(action.type) {
         case CONSTANT.ACTIONS.SAVE:
+            return Object.assign({}, state, action.payload);
+        case 'open-drawer':
+        case 'close-drawer':
             return Object.assign({}, state, action.payload);
         default:
             return state;

@@ -2,9 +2,7 @@ import React from "react";
 import { Provider } from "react-redux";
 import store from 'reducers/store';
 import AppRouter from 'router';
-import 'antd/dist/antd.less';
-import TutorialApi from "api";
-TutorialApi.init();
+// import 'antd/dist/antd.less';
 
 const TutorialApp = () => {
     return (

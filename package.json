@@ -1,6 +1,6 @@
 {
   "name": "react-diy-components",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "An UI React-based implementation",
   "author": "",
   "license": "MIT",
@@ -22,7 +22,7 @@
     "build-dev": "rm -rf build && webpack --config webpack.dev.js --env.NODE_ENV=local --env.production --progress",
     "build-prod": "rm -rf build && cross-env NODE_ENV=production webpack --config webpack.prod.js --progress",
     "build-npm": "rm -rf dist && cross-env NODE_ENV=npm webpack --config webpack.npm.js --progress",
-    "cp": "cp -r dist/ examples/demo-proj/node_modules/react-diy-components/dist",
+    "cp": "cp -r dist/ examples/mblock-web/node_modules/react-diy-components/dist",
     "transpile": "npm run build-npm",
     "prepublishOnly": "npm run transpile",
     "deploy": "gh-pages -d build/prod",

@@ -50,9 +50,21 @@ const content_list= (data: {coverId: number}, success?: Function, fail?: Functio
     };
 };
 
+const openDrawer = () => ({
+    type: 'open-drawer',
+    payload: {isShowDrawer: true}
+});
+
+const closeDrawer= () => ({
+    type: 'close-drawer',
+    payload: {isShowDrawer: false}
+});
+
 export default {
     save,
     sery_list,
     lesson_list,
-    content_list
+    content_list,
+    openDrawer,
+    closeDrawer
 };

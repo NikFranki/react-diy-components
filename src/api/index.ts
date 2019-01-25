@@ -1,17 +1,26 @@
 import EventEmitter from 'util/events';
+import store from "reducers/store";
+import TutorialAction from "reducers/tutorial/action";
 
 class TutorialApi {
 
     init() {
-        window.TutorialApi = this;
+        window.TutorialApis = this;
     }
 
-    openOrCloseTutorial = () => {
-        EventEmitter.emit('showDrawer');
+    openOrCloseTutorial = (visible: boolean) => {
+        EventEmitter.emit('showDrawer', visible);
     }
 
+    openDrawer = () => {
+        store.dispatch(TutorialAction.openDrawer());
+    }
+
+    closeDrawer = () => {
+        store.dispatch(TutorialAction.closeDrawer());
+    }
 }
 
-export default new TutorialApi();
+export default TutorialApi;
 
 

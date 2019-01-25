@@ -23,9 +23,9 @@ export const hoc = (props?: InjectHocProps) => {
                 visible: true,
             }
 
-            setDrawer = () => {
+            setDrawer = (visible: boolean) => {
                 this.setState({
-                    visible: !this.state.visible,
+                    visible
                 });
             }
 
@@ -37,9 +37,9 @@ export const hoc = (props?: InjectHocProps) => {
                 EventEmitter.on('showDrawer', this.setDrawer);
             }
 
-            componentWillUnmount() {
-                EventEmitter.removeListener('showDrawer', this.setDrawer);
-            }
+            // componentWillUnmount() {
+            //     EventEmitter.removeListener('showDrawer', this.setDrawer);
+            // }
 
             onClose = () => {
                 this.setState({
@@ -55,7 +55,7 @@ export const hoc = (props?: InjectHocProps) => {
             }
 
             public render() {
-                const { cursery, curlesson } = store.getState().category;
+                const { cursery, curlesson, isShowDrawer } = store.getState().category;
                 const isNeedBackBtn = History.location.pathname !== '/';
                 const languages  = {zh: Zh, en: En};
 
@@ -86,7 +86,7 @@ export const hoc = (props?: InjectHocProps) => {
                         >
                             <WrapperComponent {...props} />
                         </Drawer>  */}
-                        <div className={`drawer-open ${this.state.visible ? 'active' : ''}`}>
+                        <div className={`drawer-open ${isShowDrawer ? 'active' : ''}`}>
                             <div className="mask"></div>
                             <div className="drawer-wrapper">
                                 {isNeedBackBtn &&
